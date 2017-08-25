@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.btn {
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.Circle {background-color: #4CAF50;} /* Green */
+.Circle:hover {background-color: #46a049;}
+
+.Triangle {background-color: #2196F3;} /* Blue */
+.Triangle:hover {background: #0b7dda;}
+
+.Square {background-color: #ff9800;} /* Orange */
+.Square:hover {background: #e68a00;}
+
+.Rectangle {background-color: #f44336;} /* Red */ 
+.Rectangle:hover {background: #da190b;}
+
+.Hexagon {background-color: #800080; color: white;} 
+.Hexagon:hover {background: #660066;}
+
+
+
+</style>
+</head>
+<body style="background-color: whitesmoke";>
+
+<canvas id="myCanvas" width="500" height="250" style="border:8px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+
+
+
+<p id="demo"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<p id="demo4"></p>
+<p id="demo5"></p>
+<p id="demo6"></p>
+<p id="demo7"></p>
+<p id="demo8"></p>
+<p id="demo9"></p>
+
+<p id="demos"></p>
+
+
+<script type="text/javascript">
+
+
+Math.getDistance = function( xi, yi, xj, yj ) {
+	
+	var 	xs = xj - xi,
+		ys = yj - yi;		
+	
+	xs *= xs;
+	ys *= ys;
+	 
+	return Math.sqrt( xs + ys );
+};
+        
+function myFunctioncircle() {
+    //document.write(" <img src='http://images.clipartpanda.com/circle-clip-art-yToeE5KLc.png' class='image2' style='width:20%'>")
+
+ 	
+
+    var radius = prompt("Please enter radius");
+    if (radius != null) {
+    	 var c =  document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	ctx.beginPath();
+	ctx.arc(95,50,radius,0,2*Math.PI);
+	ctx.stroke();
+ 
+}
+	
+ document.getElementById("demo").innerHTML =
+        "Perimeter " + 2*Math.PI*radius ;
+
+  document.getElementById("demo2").innerHTML =
+        "Area " + Math.PI*radius*radius ;
+
+    }
+
+function myFunctiontriangle() {
+
+	var x1= prompt("Enter x coordinate for point 1");
+		var x2= prompt("Enter x coordinate for point 2");
+			var y1= prompt("Enter x coordinate for point 1");
+				var y2= prompt("Enter x coordinate for point 2");
+					var x3= prompt("Enter x coordinate for point 3");
+						var y3= prompt("Enter x coordinate for point 3");
+
+
+    var t =  document.getElementById("myCanvas");
+	var ctx = t.getContext("2d");
+	    ctx.beginPath();
+
+    ctx.moveTo(x3, y3);
+    ctx.lineTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.fill();
+
+   var pside1=Math.getDistance(x1,y1,x2,y2);
+    var pside2=Math.getDistance(x3,y3,x2,y2);
+    var pside3=Math.getDistance(x1,y1,x3,y3);
+
+    //var Perimeter = pside1+pside2+pside3;
+    var p= (pside1+pside2+pside3)/2;
+
+    var area= Math.sqrt(p*(pside1)*(pside2)*(pside3)); 
+
+     document.getElementById("demo3").innerHTML =
+        "Perimeter " + pside1+pside2+pside3 ;
+
+  document.getElementById("demo4").innerHTML =
+        "Area " + area ;
+
+
+       
+
+    }
+ 
+ function myFunctionsquare() {
+
+
+ 	var side= prompt("Enter the side of the square");
+
+ var s =  document.getElementById("myCanvas");
+	var ctx = s.getContext("2d");
+	    ctx.beginPath();
+ctx.strokeStyle = "red";
+ctx.strokeRect(50, 50, side,side );
+
+document.getElementById("demo5").innerHTML =
+        "Perimeter " + 4*side ;
+
+  document.getElementById("demo6").innerHTML =
+        "Area " + side*side ;
+
+
+
+
+
+    }
+
+ function myFunctionrectangle() {
+
+ 	var length= prompt("Enter the length of the rectangle");
+ 	var breadth=prompt("Enter the breadth of the rectangle")
+
+ var l =  document.getElementById("myCanvas");
+	var ctx = l.getContext("2d");
+	    ctx.beginPath();
+ctx.strokeStyle = "red";
+ctx.strokeRect(50, 50, length,breadth );
+
+
+document.getElementById("demo7").innerHTML =
+        "Perimeter " + 2*(length+breadth) ;
+
+  document.getElementById("demo8").innerHTML =
+        "Area " + length*breadth ;
+
+
+  
+    }
+
+ function myFunctionhexagon() {
+  //  document.write("Hexagon")
+var side1=prompt("Enter side length");
+
+
+  var l =  document.getElementById("myCanvas");
+	var ctx = l.getContext("2d");
+
+       	ctx.beginPath();
+        ctx.moveTo(75, 20);
+        ctx.lineTo(175, 20);
+        ctx.lineTo(200, 75);
+        ctx.lineTo(175, 130);
+        ctx.lineTo(75, 130);
+        ctx.lineTo(50, 75);
+        ctx.closePath();
+        ctx.fillStyle = "rgb(200,0,0)";
+        ctx.fill();
+  
+
+    
+
+    document.getElementById("demo9").innerHTML =
+        "Perimeter " + 6*side1 ;
+
+   document.getElementById("demos").innerHTML= "Area" + (3*Math.sqrt(3)*side1*side1)/2 ;
+
+
+    }         
+
+
+
+</script>
+ 
+
+<button class="btn Circle" id="Circle" onclick="myFunctioncircle()">Circle</button>
+<button class="btn Triangle" id="Triangle" onclick="myFunctiontriangle()">Triangle</button>
+<button class="btn Square"; id="Square" onclick="myFunctionsquare()">Square</button>
+<button class="btn Rectangle"; id="Rectangle" onclick="myFunctionrectangle()">Rectangle</button>
+<button class="btn Hexagon"; id="Hexagon" onclick="myFunctionhexagon()">Hexagon</button>
+
+
+
+
+</body>
+</html> 
